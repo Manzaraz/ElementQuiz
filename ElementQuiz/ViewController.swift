@@ -33,6 +33,9 @@ class ViewController: UIViewController {
         answerLabel.text = elementList[currentElementIndex]
     }
     @IBAction func next(_ sender: Any) {
+        currentElementIndex += 1
+        updateElement()
+        
     }
     
 }
