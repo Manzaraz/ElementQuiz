@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        updateElement() 
+        updateElement()
     }
     
     func updateElement() {
@@ -29,6 +29,11 @@ class ViewController: UIViewController {
         answerLabel.text = "?"
     }
 
-
+    @IBAction func showAnswer(_ sender: Any) {
+        answerLabel.text = elementList[currentElementIndex]
+    }
+    @IBAction func next(_ sender: Any) {
+    }
+    
 }
 
