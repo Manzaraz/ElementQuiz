@@ -34,8 +34,11 @@ class ViewController: UIViewController {
     }
     @IBAction func next(_ sender: Any) {
         currentElementIndex += 1
-        updateElement()
+        if currentElementIndex >= elementList.count {
+            currentElementIndex = 0
+        }
         
+        updateElement()
     }
     
 }
