@@ -43,6 +43,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="answerLabel" destination="57q-sV-zsx" id="H1k-n4-8J2"/>
+                        <outlet property="imageView" destination="NxV-a0-plJ" id="a4b-9D-LLP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
