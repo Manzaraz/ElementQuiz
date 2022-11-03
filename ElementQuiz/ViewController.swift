@@ -46,10 +46,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updateUI()
     }
     
-    func updateFlashCardUI() {
-        let elementName = elementList[currentElementIndex]
-        let image = UIImage(named: elementName)
-        imageView.image = image
+    func updateFlashCardUI(elementName: String) {
+        
         
         if state == .answer {
             answerLabel.text = elementName
@@ -59,27 +57,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    func updateQuiz() {
+    func updateQuizUI(elementName: String) {
         switch state {
         case .question:
             answerLabel.text = ""
         case .answer:
             if answerIsCorrect {
                 answerLabel.text = "Correct!"
-                print("correct")
             } else {
                 answerLabel.text = "❌"
-                print("❌")
             }
         }
     }
     
     func updateUI() {
+        // Shared Code: updating the image
+        let elementName = elementList[currentElementIndex]
+        let image = UIImage(named: elementName)
+        imageView.image = image
+        
         switch mode {
         case .flashCard:
-            updateFlashCardUI()
+            updateFlashCardUI(elementName: elementName)
         case .quiz:
-            updateQuiz()
+            updateQuizUI(elementName: elementName)
         }
     }
     
