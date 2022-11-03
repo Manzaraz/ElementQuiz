@@ -13,7 +13,7 @@ enum Mode {
 enum State {
     case question, answer
 }
-var mode: Mode = .flashCard
+
 
 class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var imageView: UIImageView!
@@ -25,6 +25,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]
     var currentElementIndex = 0
+    
+    var mode: Mode = .flashCard {
+        didSet {
+            updateUI()
+        }
+    }
     
     var state: State = .question
     
@@ -59,10 +65,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             answerLabel.text = ""
         case .answer:
             if answerIsCorrect {
-//                answerLabel.text = "Correct!"
+                answerLabel.text = "Correct!"
                 print("correct")
             } else {
-//                answerLabel.text = "❌"
+                answerLabel.text = "❌"
                 print("❌")
             }
         }
@@ -112,7 +118,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         updateUI()
         
-        return true       
+        return true
     }
+    @IBAction func switchModes(_ sender: Any) {
+        if modeSelector.selectedSegmentIndex == 0 {
+            mode = .flashCard
+        } else {
+            mode = .quiz
+        }
+    }
+    
+    
 }
 
