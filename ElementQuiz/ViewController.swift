@@ -32,25 +32,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var answerIsCorrect = false
     var correctAnswerCount = 0
     
-    // Runs after the user hits the Return key on the keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let textFieldContents = textField.text! // Get the text form the textField
-        
-        // Determine whether the user answered correctly and update appropiate quiz
-        // state
-        if textFieldContents.lowercased() == elementList[currentElementIndex].lowercased() {
-            answerIsCorrect = true
-            correctAnswerCount += 1
-        } else {
-            answerIsCorrect = false
-        }
-        
-        // The app should now display the answer to the user
-        state = .answer
-        updateUI()
-        return true
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +54,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     func updateQuiz() {
-  
+        switch state {
+        case .question:
+            answerLabel.text = ""
+        case .answer:
+            if answerIsCorrect {
+//                answerLabel.text = "Correct!"
+                print("correct")
+            } else {
+//                answerLabel.text = "❌"
+                print("❌")
+            }
+        }
     }
     
     func updateUI() {
@@ -102,5 +94,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updateUI()
     }
     
+    // Runs after the user hits the Return key on the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let textFieldContents = textField.text! // Get the text form the textField
+        
+        // Determine whether the user answered correctly and update appropiate quiz
+        // state
+        if textFieldContents.lowercased() == elementList[currentElementIndex].lowercased() {
+            answerIsCorrect = true
+            correctAnswerCount += 1
+        } else {
+            answerIsCorrect = false
+        }
+        
+        // The app should now display the answer to the user
+        state = .answer
+        
+        updateUI()
+        
+        return true       
+    }
 }
 
