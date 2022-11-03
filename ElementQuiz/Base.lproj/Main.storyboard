@@ -27,6 +27,15 @@
                                 <rect key="frame" x="125" y="140" width="140" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpG-EU-0bm">
+                                <rect key="frame" x="234" y="437" width="140" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Next Answer"/>
+                                <connections>
+                                    <action selector="next:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vRe-Xz-0Df"/>
+                                </connections>
+                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pcL-yG-haX">
                                 <rect key="frame" x="110" y="72" width="170" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -49,21 +58,12 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPV-8v-s5c">
-                                <rect key="frame" x="49" y="437" width="127" height="35"/>
+                                <rect key="frame" x="16" y="437" width="140" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Show Answer"/>
                                 <connections>
                                     <action selector="showAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="woo-Lk-QcQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpG-EU-0bm">
-                                <rect key="frame" x="221" y="437" width="121" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Next Answer"/>
-                                <connections>
-                                    <action selector="next:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vRe-Xz-0Df"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -74,6 +74,8 @@
                         <outlet property="answerLabel" destination="57q-sV-zsx" id="H1k-n4-8J2"/>
                         <outlet property="imageView" destination="NxV-a0-plJ" id="a4b-9D-LLP"/>
                         <outlet property="modeSelector" destination="pcL-yG-haX" id="aGW-Df-iJF"/>
+                        <outlet property="nextButton" destination="qpG-EU-0bm" id="KZL-wx-oAr"/>
+                        <outlet property="showAnswerButton" destination="lPV-8v-s5c" id="pv3-ru-2WZ"/>
                         <outlet property="textField" destination="3Vw-xz-FTb" id="ld8-kO-QFE"/>
                     </connections>
                 </viewController>

@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var modeSelector: UISegmentedControl!
     @IBOutlet var textField: UITextField!
     
+    @IBOutlet var showAnswerButton: UIButton!
+    @IBOutlet var nextButton: UIButton!
     
     let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]
     var currentElementIndex = 0
@@ -69,6 +71,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Segmented Control
         modeSelector.selectedSegmentIndex = 0
         
+        
+        // Buttons
+        showAnswerButton.isHidden = false
+        nextButton.isEnabled = true
+        nextButton.setTitle("Next Element", for: .normal)
     }
 
     // Updates the app's UI in quiz mode
@@ -77,13 +84,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textField.isHidden = false
         switch state {
         case .question:
+            textField.isEnabled = true
             textField.text = ""
             textField.resignFirstResponder()
         case .answer:
+            textField.isEnabled = false
             textField.resignFirstResponder()
         case .score:
             textField.isHidden = true
             textField.resignFirstResponder()
+            
         }
         
         // Answer Label
@@ -107,6 +117,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
          
         //Segmented Control
         modeSelector.selectedSegmentIndex = 1
+        
+        // Buttons
+        showAnswerButton.isHidden = true
+        if currentElementIndex == elementList.count - 1 {
+            nextButton.setTitle("Show Score", for: .normal)
+        } else {
+            nextButton.setTitle("Next Question", for: .normal)
+        }
+        switch state {
+        case .question:
+            nextButton.isEnabled = false
+        case .answer:
+            nextButton.isEnabled = true
+        case .score:
+            nextButton.isEnabled = false
+        }
     }
     
     func updateUI() {
