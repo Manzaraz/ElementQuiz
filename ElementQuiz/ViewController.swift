@@ -59,6 +59,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             answerLabel.text = "?"
         }
         
+        // Segmented Control
+        modeSelector.selectedSegmentIndex = 0
+        
     }
 
     // Updates the app's UI in quiz mode
@@ -95,6 +98,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             displayScoreAlert()
         }
          
+        //Segmented Control
+        modeSelector.selectedSegmentIndex = 1
     }
     
     func updateUI() {
