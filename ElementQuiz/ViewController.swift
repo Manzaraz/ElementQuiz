@@ -10,6 +10,9 @@ import UIKit
 enum Mode {
     case flashCard, quiz
 }
+enum State {
+    case question, answer
+}
 var mode: Mode = .flashCard
 
 class ViewController: UIViewController {
@@ -23,31 +26,43 @@ class ViewController: UIViewController {
     let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]
     var currentElementIndex = 0
     
+    var state: State = .question
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        updateElement()
+        updateFlashCardUI()
     }
     
-    func updateElement() {
+    func updateFlashCardUI() {
         let elementName = elementList[currentElementIndex]
         let image = UIImage(named: elementName)
         imageView.image = image
         
-        answerLabel.text = "?"
+        if state == .answer {
+            answerLabel.text = elementName
+        } else {
+            answerLabel.text = "?"
+        }
+        
     }
 
     @IBAction func showAnswer(_ sender: Any) {
-        answerLabel.text = elementList[currentElementIndex]
+//        answerLabel.text = elementList[currentElementIndex]
+        state = .answer
+        updateFlashCardUI()
+        
     }
+    
     @IBAction func next(_ sender: Any) {
         currentElementIndex += 1
         if currentElementIndex >= elementList.count {
             currentElementIndex = 0
         }
+        state = .question
         
-        updateElement()
+        updateFlashCardUI()
     }
     
 }
