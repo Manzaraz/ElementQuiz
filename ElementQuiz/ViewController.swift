@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        updateFlashCardUI()
+        updateUI()
     }
     
     func updateFlashCardUI() {
@@ -48,10 +48,23 @@ class ViewController: UIViewController {
         
     }
 
+    func updateQuiz() {
+  
+    }
+    
+    func updateUI() {
+        switch mode {
+        case .flashCard:
+            updateFlashCardUI()
+        case .quiz:
+            updateQuiz()
+        }
+    }
+    
     @IBAction func showAnswer(_ sender: Any) {
 //        answerLabel.text = elementList[currentElementIndex]
         state = .answer
-        updateFlashCardUI()
+        updateUI()
         
     }
     
@@ -62,7 +75,7 @@ class ViewController: UIViewController {
         }
         state = .question
         
-        updateFlashCardUI()
+        updateUI()
     }
     
 }
