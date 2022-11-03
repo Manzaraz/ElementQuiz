@@ -11,7 +11,7 @@ enum Mode {
     case flashCard, quiz
 }
 enum State {
-    case question, answer
+    case question, answer, score
 }
 
 
@@ -71,8 +71,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
         case .answer:
             textField.resignFirstResponder()
+        case .score:
+            textField.isHidden = true
+            textField.resignFirstResponder()
         }
-        
         
         // Answer Label
         switch state {
@@ -84,7 +86,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
             } else {
                 answerLabel.text = "❌"
             }
+        case .score:
+            answerLabel.text = ""
         }
+        
+        // Score display
+        if state == .score {
+            displayScoreAlert()
+        }
+         
     }
     
     func updateUI() {
@@ -112,6 +122,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         currentElementIndex += 1
         if currentElementIndex >= elementList.count {
             currentElementIndex = 0
+            if mode == .quiz {
+                state = .score
+                updateUI()
+                return
+            }
         }
         state = .question
         
@@ -146,6 +161,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Shows an iOs Alert with the user's quiz score
+    func displayScoreAlert() {
+        let alert = UIAlertController(title: "Quiz Score", message: "Your Score is \(correctAnswerCount) out of \(elementList.count)", preferredStyle: .alert)
+        
+        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: scoreAlertDismissed(_:))
+        alert.addAction(dismissAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func scoreAlertDismissed(_ action: UIAlertAction) {
+        mode = .flashCard
+    }
     
 }
 
