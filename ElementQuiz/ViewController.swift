@@ -15,7 +15,7 @@ enum State {
 }
 var mode: Mode = .flashCard
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var answerLabel: UILabel!
     
@@ -27,6 +27,30 @@ class ViewController: UIViewController {
     var currentElementIndex = 0
     
     var state: State = .question
+    
+    // Quiz-specific state
+    var answerIsCorrect = false
+    var correctAnswerCount = 0
+    
+    // Runs after the user hits the Return key on the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let textFieldContents = textField.text! // Get the text form the textField
+        
+        // Determine whether the user answered correctly and update appropiate quiz
+        // state
+        if textFieldContents.lowercased() == elementList[currentElementIndex].lowercased() {
+            answerIsCorrect = true
+            correctAnswerCount += 1
+        } else {
+            answerIsCorrect = false
+        }
+        
+        // The app should now display the answer to the user
+        state = .answer
+        updateUI()
+        return true
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -36,10 +36,14 @@
                                 </segments>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Vw-xz-FTb">
-                                <rect key="frame" x="125" y="371" width="140" height="34"/>
+                                <rect key="frame" x="125" y="372" width="140" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldShouldReturn:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="dWQ-Ua-qLf"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="nsT-cH-b8u"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPV-8v-s5c">
                                 <rect key="frame" x="49" y="437" width="127" height="35"/>
